@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
+import 'package:image_picker/image_picker.dart';
 
 class Home extends StatelessWidget {
+  final imagePicker = ImagePicker();
+
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-//        leading: Icon(Icons.menu),
         actions: <Widget>[
           Padding(
             padding: const EdgeInsets.only(right: 15),
@@ -115,6 +117,23 @@ class Home extends StatelessWidget {
                   ),
                   onPressed: () {
                     Navigator.pushNamed(context, 'camera');
+                  },
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Container(
+                height: 50,
+                width: 200,
+                color: Colors.red,
+                child: FlatButton(
+                  child: Text(
+                    "Gallery",
+                  ),
+                  onPressed: () async {
+                    final pickedFile = await imagePicker.getImage(source: ImageSource.gallery);
+                    Navigator.pushNamed(context, 'show_image', arguments: {"imagePath": pickedFile.path});
                   },
                 ),
               ),
