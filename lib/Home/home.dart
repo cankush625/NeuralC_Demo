@@ -7,7 +7,7 @@ class Home extends StatelessWidget {
     var screenSize = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(Icons.menu),
+//        leading: Icon(Icons.menu),
         actions: <Widget>[
           Padding(
             padding: const EdgeInsets.only(right: 15),
@@ -16,6 +16,47 @@ class Home extends StatelessWidget {
         ],
         elevation: 0,
         backgroundColor: Colors.indigoAccent[700],
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              child: Text(
+                'NeuralC',
+                style: TextStyle(
+                  fontSize: 26,
+                  color: Colors.white,
+                ),
+              ),
+              decoration: BoxDecoration(
+                color: Colors.indigoAccent[700],
+              ),
+            ),
+            ListTile(
+              title: Text(
+                'Features',
+                style: TextStyle(
+                  fontSize: 18,
+                ),
+              ),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: Text(
+                'About',
+                style: TextStyle(
+                  fontSize: 18,
+                ),
+              ),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
       ),
       body: SafeArea(
         child: Center(
