@@ -32,6 +32,9 @@ dependencies:
   path_provider: ^1.6.24
   flutter_custom_clippers: ^1.1.1
   image_picker: ^0.6.7
+  cloud_firestore: ^0.14.0
+  firebase_core: ^0.5.0
+  firebase_storage: ^5.0.0
 
 dev_dependencies:
   flutter_test:

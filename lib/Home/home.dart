@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
+import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:image_picker/image_picker.dart';
 
+import 'package:neuralc/Firebase/FirebaseStorage/firebase_storage_services.dart';
+
+// ignore: must_be_immutable
 class Home extends StatelessWidget {
   final imagePicker = ImagePicker();
+  var fsconnect = FirebaseFirestore.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -132,7 +139,10 @@ class Home extends StatelessWidget {
                     "Gallery",
                   ),
                   onPressed: () async {
-                    final pickedFile = await imagePicker.getImage(source: ImageSource.gallery);
+                    final PickedFile pickedFile = await imagePicker.getImage(source: ImageSource.gallery);
+                    File image = File(pickedFile.path);
+                    await storeImageInFirebaseStorage(image);
+                    // todo: show the image using downloadUrl from firebase storage
                     Navigator.pushNamed(context, 'show_image', arguments: {"imagePath": pickedFile.path});
                   },
                 ),
